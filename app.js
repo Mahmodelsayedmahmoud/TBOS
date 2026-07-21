@@ -1,84 +1,63 @@
-
 const app = document.getElementById("app");
 
 app.innerHTML = `
 <div class="container">
 
 <div class="sidebar">
-
-<div class="logo">
-🚚 <span>TBOS</span>
-</div>
+<h2>🚚 TBOS</h2>
 
 <ul>
 <li class="active">🏠 Dashboard</li>
-<li>🏢 Branches</li>
-<li>👥 Representatives</li>
-<li>📦 Workflow</li>
-<li>📊 Reports</li>
-<li>⚙ Settings</li>
+<li>👷 أمين المخزن</li>
+<li>🚚 المندوبون</li>
+<li>🏢 الفروع</li>
+<li>📊 التقارير</li>
+<li>⚙️ الإعدادات</li>
 </ul>
-
 </div>
 
 <div class="main">
 
-<div class="topbar">
-
-<div>
+<header class="topbar">
 <h1>Trans Business Operations System</h1>
-<p>Real-Time Logistics Dashboard</p>
-</div>
-
-<div class="profile">
-👤 Super Admin
-</div>
-
-</div>
+<p>لوحة التحكم المباشرة</p>
+</header>
 
 <div class="cards">
 
 <div class="card">
-<h2>24</h2>
-<p>Representatives</p>
+<h2>52</h2>
+<p>إجمالي المندوبين</p>
 </div>
 
 <div class="card">
-<h2>12</h2>
-<p>Branches</p>
+<h2>8</h2>
+<p>على الرصيف</p>
 </div>
 
 <div class="card">
-<h2>18</h2>
-<p>On Dock</p>
+<h2>5</h2>
+<p>في الجرد</p>
 </div>
 
 <div class="card">
-<h2>3</h2>
-<p>Cashier</p>
+<h2>6</h2>
+<p>في التحميل</p>
+</div>
+
+<div class="card">
+<h2>3 / 4</h2>
+<p>الكاش</p>
+</div>
+
+<div class="card danger">
+<h2>11 دقيقة</h2>
+<p>متوسط الانتظار</p>
 </div>
 
 </div>
 
-<div class="workflow">
-
-<div class="step done">Entry</div>
-<div class="arrow">➜</div>
-
-<div class="step active">Dock</div>
-<div class="arrow">➜</div>
-
-<div class="step">Inventory</div>
-<div class="arrow">➜</div>
-
-<div class="step">Loading</div>
-<div class="arrow">➜</div>
-
-<div class="step">Cashier</div>
-
-</div>
-
-<div class="table">
+<h2 style="margin-top:35px">المندوبون الآن</h2>
 
 <table>
 
@@ -86,15 +65,12 @@ app.innerHTML = `
 
 <tr>
 
-<th>ID</th>
-
-<th>Name</th>
-
-<th>Branch</th>
-
-<th>Status</th>
-
-<th>Time</th>
+<th>كود</th>
+<th>الاسم</th>
+<th>الفرع</th>
+<th>الحالة</th>
+<th>وقت الانتظار</th>
+<th>القرار</th>
 
 </tr>
 
@@ -104,51 +80,40 @@ app.innerHTML = `
 
 <tr>
 
-<td>5001</td>
-
-<td>Ahmed</td>
-
-<td>Alex</td>
-
-<td>Dock</td>
-
-<td>15 min</td>
+<td>M001</td>
+<td>أحمد</td>
+<td>الإسكندرية</td>
+<td>الرصيف</td>
+<td>12 دقيقة</td>
+<td>انتظار حتى يفضى الكاش</td>
 
 </tr>
 
 <tr>
 
-<td>5002</td>
-
-<td>Mahmoud</td>
-
-<td>Cairo</td>
-
-<td>Inventory</td>
-
-<td>27 min</td>
+<td>M002</td>
+<td>محمود</td>
+<td>القاهرة</td>
+<td>الجرد</td>
+<td>5 دقائق</td>
+<td>جارى العمل</td>
 
 </tr>
 
 <tr>
 
-<td>5003</td>
-
-<td>Ali</td>
-
-<td>Tanta</td>
-
-<td>Loading</td>
-
-<td>8 min</td>
+<td>M003</td>
+<td>علي</td>
+<td>طنطا</td>
+<td>الكاش</td>
+<td>4 دقائق</td>
+<td>داخل الكاش</td>
 
 </tr>
 
 </tbody>
 
 </table>
-
-</div>
 
 </div>
 
