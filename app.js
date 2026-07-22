@@ -123,3 +123,44 @@ app.innerHTML = `
 
 </div>
 `;
+const reps = [
+  { code: "M001", name: "أحمد", branch: "الإسكندرية", status: "على الرصيف" },
+  { code: "M002", name: "محمود", branch: "القاهرة", status: "الجرد" },
+  { code: "M003", name: "علي", branch: "طنطا", status: "الكاش" }
+];
+
+function showRepresentatives() {
+  const main = document.querySelector(".main");
+
+  main.innerHTML = `
+    <h1>🚚 إدارة المندوبين</h1>
+
+    <div class="search-box">
+      <input type="text" placeholder="ابحث بكود المندوب">
+      <button>بحث</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>الكود</th>
+          <th>الاسم</th>
+          <th>الفرع</th>
+          <th>الحالة</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${reps.map(r => `
+          <tr>
+            <td>${r.code}</td>
+            <td>${r.name}</td>
+            <td>${r.branch}</td>
+            <td>${r.status}</td>
+          </tr>
+        `).join("")}
+      </tbody>
+    </table>
+  `;
+}
+
+document.querySelectorAll(".sidebar li")[2].onclick = showRepresentatives;
