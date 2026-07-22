@@ -164,3 +164,43 @@ function showRepresentatives() {
 }
 
 document.querySelectorAll(".sidebar li")[2].onclick = showRepresentatives;
+const reps = [
+  { code: "M001", name: "أحمد محمد", branch: "الإسكندرية", status: "الرصيف" },
+  { code: "M002", name: "محمود السيد", branch: "القاهرة", status: "الجرد" },
+  { code: "M003", name: "علي حسن", branch: "طنطا", status: "التحميل" }
+];
+
+function loadRepresentatives() {
+    const tbody = document.querySelector("tbody");
+
+    if (!tbody) return;
+
+    tbody.innerHTML = "";
+
+    reps.forEach(rep => {
+        tbody.innerHTML += `
+        <tr>
+            <td>${rep.code}</td>
+            <td>${rep.name}</td>
+            <td>${rep.branch}</td>
+            <td>${rep.status}</td>
+            <td>00:00</td>
+            <td><button onclick="startInventory('${rep.code}')">بدء الجرد</button></td>
+        </tr>
+        `;
+    });
+}
+
+function startInventory(code){
+
+    const rep = reps.find(r=>r.code===code);
+
+    rep.status="الجرد";
+
+    loadRepresentatives();
+
+}window.onload=function(){
+
+loadRepresentatives();
+
+}
