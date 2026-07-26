@@ -1,206 +1,156 @@
 const app = document.getElementById("app");
 
 app.innerHTML = `
-<div class="container">
+<div class="tbos">
 
-<div class="sidebar">
-<h2>🚚 TBOS</h2>
-
-<ul>
-<li class="active">🏠 Dashboard</li>
-<li>👷 أمين المخزن</li>
-<li>🚚 المندوبون</li>
-<li>🏢 الفروع</li>
-<li>📊 التقارير</li>
-<li>⚙️ الإعدادات</li>
-</ul>
-</div>
-
-<div class="main">
-
-<header class="topbar">
-<h1>Trans Business Operations System</h1>
-<p>لوحة التحكم المباشرة</p>
+<header class="header">
+<h1>🚛 TBOS PRO</h1>
+<p>Trans Business Operations System</p>
 </header>
 
-<div class="search-box">
-<input type="text" placeholder="🔍 ابحث بكود المندوب أو الاسم">
-<button>بحث</button>
-</div>
+<nav class="menu">
+<button onclick="showPage('dashboard')">الرئيسية</button>
+<button onclick="showPage('storekeeper')">أمين المخزن</button>
+<button onclick="showPage('manager')">مدير المخازن</button>
+<button onclick="showPage('reports')">التقارير</button>
+<button onclick="showPage('settings')">الإعدادات</button>
+</nav>
 
-<div class="status">
-<h2>حالة الكاش</h2>
-<p>🟢 يوجد مكان واحد متاح</p>
-<p>🚚 عدد المنتظرين: 8</p>
-<p>⏱️ متوسط الانتظار: 11 دقيقة</p>
-</div>
-
-<div class="cards">
-
-<div class="card">
-<h2>52</h2>
-<p>إجمالي المندوبين</p>
-</div>
-
-<div class="card">
-<h2>8</h2>
-<p>على الرصيف</p>
-</div>
-
-<div class="card">
-<h2>5</h2>
-<p>في الجرد</p>
-</div>
-
-<div class="card">
-<h2>6</h2>
-<p>في التحميل</p>
-</div>
-
-<div class="card">
-<h2>3 / 4</h2>
-<p>الكاش</p>
-</div>
-
-<div class="card danger">
-<h2>11 دقيقة</h2>
-<p>متوسط الانتظار</p>
-</div>
-
-</div>
-
-<h2 style="margin-top:30px;">المندوبون الآن</h2>
-
-<table>
-
-<thead>
-
-<tr>
-<th>كود</th>
-<th>الاسم</th>
-<th>الفرع</th>
-<th>الحالة</th>
-<th>وقت الانتظار</th>
-<th>القرار</th>
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-<td>M001</td>
-<td>أحمد</td>
-<td>الإسكندرية</td>
-<td>الرصيف</td>
-<td>12 دقيقة</td>
-<td>انتظار حتى يفضى الكاش</td>
-</tr>
-
-<tr>
-<td>M002</td>
-<td>محمود</td>
-<td>القاهرة</td>
-<td>الجرد</td>
-<td>5 دقائق</td>
-<td>جارٍ العمل</td>
-</tr>
-
-<tr>
-<td>M003</td>
-<td>علي</td>
-<td>طنطا</td>
-<td>الكاش</td>
-<td>4 دقائق</td>
-<td>داخل الكاش</td>
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
+<div id="content"></div>
 
 </div>
 `;
-const reps = [
-  { code: "M001", name: "أحمد", branch: "الإسكندرية", status: "على الرصيف" },
-  { code: "M002", name: "محمود", branch: "القاهرة", status: "الجرد" },
-  { code: "M003", name: "علي", branch: "طنطا", status: "الكاش" }
+
+const reps=[
+{id:"5001",name:"أحمد محمد",branch:"الإسكندرية",stage:"الرصيف",cartons:120,time:"05:35"},
+{id:"5002",name:"محمود علي",branch:"القاهرة",stage:"الجرد",cartons:85,time:"88:00"},
+{id:"5003",name:"خالد إبراهيم",branch:"طنطا",stage:"التحميل",cartons:60,time:"15:10"},
+{id:"5004",name:"حسن مصطفى",branch:"أسيوط",stage:"الكاشير",cartons:70,time:"20:00"}
 ];
 
-function showRepresentatives() {
-  const main = document.querySelector(".main");
+function showPage(page){
 
-  main.innerHTML = `
-    <h1>🚚 إدارة المندوبين</h1>
+let html="";
 
-    <div class="search-box">
-      <input type="text" placeholder="ابحث بكود المندوب">
-      <button>بحث</button>
-    </div>
+if(page==="dashboard"){
 
-    <table>
-      <thead>
-        <tr>
-          <th>الكود</th>
-          <th>الاسم</th>
-          <th>الفرع</th>
-          <th>الحالة</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${reps.map(r => `
-          <tr>
-            <td>${r.code}</td>
-            <td>${r.name}</td>
-            <td>${r.branch}</td>
-            <td>${r.status}</td>
-          </tr>
-        `).join("")}
-      </tbody>
-    </table>
-  `;
-}
+html=`
+<h2>الرئيسية</h2>
 
-document.querySelectorAll(".sidebar li")[2].onclick = showRepresentatives;
-const reps = [
-  { code: "M001", name: "أحمد محمد", branch: "الإسكندرية", status: "الرصيف" },
-  { code: "M002", name: "محمود السيد", branch: "القاهرة", status: "الجرد" },
-  { code: "M003", name: "علي حسن", branch: "طنطا", status: "التحميل" }
-];
+<div class="card">
+<h3>إجمالي المناديب ${reps.length}</h3>
+</div>
 
-function loadRepresentatives() {
-    const tbody = document.querySelector("tbody");
-
-    if (!tbody) return;
-
-    tbody.innerHTML = "";
-
-    reps.forEach(rep => {
-        tbody.innerHTML += `
-        <tr>
-            <td>${rep.code}</td>
-            <td>${rep.name}</td>
-            <td>${rep.branch}</td>
-            <td>${rep.status}</td>
-            <td>00:00</td>
-            <td><button onclick="startInventory('${rep.code}')">بدء الجرد</button></td>
-        </tr>
-        `;
-    });
-}
-
-function startInventory(code){
-
-    const rep = reps.find(r=>r.code===code);
-
-    rep.status="الجرد";
-
-    loadRepresentatives();
-
-}window.onload=function(){
-
-loadRepresentatives();
+`;
 
 }
+
+if(page==="storekeeper"){
+
+html=`
+<h2>أمين المخزن</h2>
+
+<input id="search"
+placeholder="ابحث بالكود أو الاسم أو الفرع"
+onkeyup="searchRep()">
+
+<div id="repList"></div>
+`;
+
+}
+
+if(page==="manager"){
+
+html=`
+<h2>مدير المخازن</h2>
+
+<button onclick="filterBranch('الإسكندرية')">الإسكندرية</button>
+<button onclick="filterBranch('القاهرة')">القاهرة</button>
+<button onclick="filterBranch('طنطا')">طنطا</button>
+<button onclick="filterBranch('أسيوط')">أسيوط</button>
+
+<div id="branchList"></div>
+
+`;
+
+}
+
+if(page==="reports"){
+
+html="<h2>التقارير</h2>";
+
+}
+
+if(page==="settings"){
+
+html="<h2>الإعدادات</h2>";
+
+}
+
+document.getElementById("content").innerHTML=html;
+
+if(page==="storekeeper")render(reps);
+
+if(page==="manager")filterBranch("الإسكندرية");
+
+}
+
+function render(list){
+
+let html="";
+
+list.forEach(r=>{
+
+html+=`
+<div class="card">
+<h3>${r.name}</h3>
+<p>${r.branch}</p>
+<p>${r.stage}</p>
+<p>${r.cartons} كرتونة</p>
+<p>${r.time}</p>
+</div>
+`;
+
+});
+
+document.getElementById("repList").innerHTML=html;
+
+}
+
+function searchRep(){
+
+const q=document.getElementById("search").value;
+
+render(reps.filter(r=>
+
+r.name.includes(q)||
+
+r.id.includes(q)||
+
+r.branch.includes(q)
+
+));
+
+}
+
+function filterBranch(branch){
+
+let html="";
+
+reps.filter(r=>r.branch===branch).forEach(r=>{
+
+html+=`
+<div class="card">
+<h3>${r.name}</h3>
+<p>${r.id}</p>
+<p>${r.stage}</p>
+</div>
+`;
+
+});
+
+document.getElementById("branchList").innerHTML=html;
+
+}
+
+showPage("dashboard");
